@@ -1,6 +1,6 @@
 {
   "name": "moleculeblock-cli",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "MoleculeBlock 项目脚手架",
   "private": "false",
   "main": "index.js",

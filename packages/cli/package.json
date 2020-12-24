@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "acess": "public",
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
@@ -27,5 +27,5 @@
   "bugs": {
     "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"
   },
-  "gitHead": "57cd76183e53f29b7d9e876c815725df7406e401"
+  "gitHead": "2ddbe40f43a97a3ef167b20c3e5c0724635a0a07"
 }
