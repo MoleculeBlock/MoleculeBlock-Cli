@@ -1,5 +1,5 @@
 {
-  "name": "moleculeBbock-cli",
+  "name": "moleculeblock-cli",
   "version": "1.0.0",
   "description": "MoleculeBlock 项目脚手架",
   "main": "index.js",
