@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Lerna Dependency directories
+packages/**/node_modules
