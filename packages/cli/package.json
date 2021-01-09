@@ -7,7 +7,7 @@
     "license": "MIT",
     "main": "lib/cli.js",
     "bin": {
-        "@moleculeblock/cli": "bin/index.js"
+        "moleculeblock": "bin/index.js"
     },
     "directories": {
         "lib": "lib",
