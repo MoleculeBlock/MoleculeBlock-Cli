@@ -5,6 +5,8 @@ module.exports = index;
 const log = require('@moleculeblock/cli-log');
 const semver = require('semver')
 const colors = require('colors/safe')
+const userHome = require('user-home')
+const pathExists = require('path-exists').sync
 const pkg = require('../package.json')
 const { LOWEST_NODE_VERSION } = require('./const');
 
@@ -14,8 +16,15 @@ function index() {
     checkPkgVersion()
     checkNodeVersion()
     checkRoot()
+    checkUserHome()
   } catch (e) {
     log.error(e.message)
+  }
+}
+
+function checkUserHome() {
+  if(!userHome || !pathExists(userHome)) {
+    throw new Error(colors.red('当前登录用户主目录不存在！'))
   }
 }
 
