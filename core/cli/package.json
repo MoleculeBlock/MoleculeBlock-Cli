@@ -5,7 +5,7 @@
     "author": "tarosunn <sunxiaomingyes@gmail.com>",
     "homepage": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/tree/master/packages/cli#readme",
     "license": "MIT",
-    "main": "lib/cli.js",
+    "main": "lib/index.js",
     "bin": {
         "moleculeblock": "bin/index.js"
     },
@@ -28,7 +28,9 @@
         "test": "echo \"Error: run tests from root\" && exit 1"
     },
     "dependencies": {
-        "@moleculeblock/cli-utils": "../../utils/utils"
+        "@moleculeblock/cli-utils": "file:../../utils/utils",
+        "import-local": "^3.0.2",
+        "npmlog": "^4.1.2"
     },
     "bugs": {
         "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"
