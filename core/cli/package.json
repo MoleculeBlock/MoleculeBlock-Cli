@@ -29,8 +29,10 @@
     },
     "dependencies": {
         "@moleculeblock/cli-log": "file:../../utils/log",
+        "colors": "^1.4.0",
         "import-local": "^3.0.2",
-        "npmlog": "^4.1.2"
+        "npmlog": "^4.1.2",
+        "semver": "^7.3.4"
     },
     "bugs": {
         "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"
