@@ -27,6 +27,9 @@
     "scripts": {
         "test": "echo \"Error: run tests from root\" && exit 1"
     },
+    "dependencies": {
+        "@moleculeblock/cli-utils": "../../utils/utils"
+    },
     "bugs": {
         "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"
     },
