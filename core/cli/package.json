@@ -28,7 +28,7 @@
         "test": "echo \"Error: run tests from root\" && exit 1"
     },
     "dependencies": {
-        "@moleculeblock/cli-utils": "file:../../utils/utils",
+        "@moleculeblock/cli-log": "file:../../utils/log",
         "import-local": "^3.0.2",
         "npmlog": "^4.1.2"
     },

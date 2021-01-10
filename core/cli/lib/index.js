@@ -2,6 +2,13 @@
 
 module.exports = index;
 
+const pkg = require('../package.json')
+const log = require('@moleculeblock/cli-log')
+
 function index() {
-  console.log('exec core')
+  checkPkgVersion()
+}
+
+function checkPkgVersion() {
+  log.notice('cli', pkg.version)
 }
