@@ -13,9 +13,15 @@ function index() {
   try {
     checkPkgVersion()
     checkNodeVersion()
+    checkRoot()
   } catch (e) {
     log.error(e.message)
   }
+}
+
+function checkRoot() {
+  const rootCheck = require('root-check')
+  rootCheck()
 }
 
 function checkNodeVersion() {
