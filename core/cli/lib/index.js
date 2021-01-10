@@ -11,9 +11,9 @@ const pathExists = require('path-exists').sync
 const pkg = require('../package.json')
 const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } = require('./const');
 
-let args, config
+let args
 
-function index() {
+async function index() {
   try {
     checkPkgVersion()
     checkNodeVersion()
@@ -21,8 +21,20 @@ function index() {
     checkUserHome()
     checkInputArgs()
     checkEnv()
+    await checkGlobalUpdate()
   } catch (e) {
     log.error(e.message)
+  }
+}
+
+async function checkGlobalUpdate() {
+  const currentNpmVersion = pkg.version
+  const npmName = pkg.name
+  const {getNpmSemanticVersion} = require('@moleculeblock/cli-get-npm-info')
+  const lastVersions = await getNpmSemanticVersion(currentNpmVersion,npmName)
+  if(lastVersions && semver.gt(lastVersions, currentNpmVersion)) {
+    log.warn('更新提示' ,colors.yellow(`当前版本: ${currentNpmVersion} 最新版本: ${lastVersions}, 请手动更新 ${npmName}
+              更新命令: npm install -g ${npmName}`))
   }
 }
 

@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@moleculeblock/cli-log": "file:../../utils/log",
+        "@moleculeblock/cli-get-npm-info": "file:../../utils/get-npm-info",
         "colors": "^1.4.0",
         "dotenv": "^8.2.0",
         "import-local": "^3.0.2",
