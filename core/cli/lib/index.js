@@ -3,13 +3,15 @@
 module.exports = index;
 
 const path = require('path')
-const log = require('@moleculeblock/cli-log');
 const semver = require('semver')
 const colors = require('colors/safe')
 const userHome = require('user-home')
 const pathExists = require('path-exists').sync
 const commander = require('commander')
+const log = require('@moleculeblock/cli-log');
+const init = require('@moleculeblock/cli-init')
 const pkg = require('../package.json')
+
 const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } = require('./const');
 
 let args
@@ -38,6 +40,12 @@ function registerCommand() {
     .version(pkg.version)
     .option('-d, --debug', '是否开启调试模式', false)
 
+  program
+    .command('init [projectName]')
+    .option('-f, --force', '是否强制初始化项目')
+    .action(init)
+
+  // 开启debug模式
   program.on('option:debug', () => {
     if(program.debug) {
       process.env.LOG_LEVEL = 'verbose'
@@ -47,6 +55,7 @@ function registerCommand() {
     log.level = process.env.LOG_LEVEL
   })
 
+  // 未知命令匹配
   program.on('command:*', (obj) => {
     const availableCommands = program.commands.map(cmd => cmd.name())
     console.log(colors.red('未知的命令: ' + obj[0]))
