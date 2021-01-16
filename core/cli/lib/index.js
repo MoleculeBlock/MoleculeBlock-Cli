@@ -10,6 +10,7 @@ const pathExists = require('path-exists').sync
 const commander = require('commander')
 const log = require('@moleculeblock/cli-log');
 const init = require('@moleculeblock/cli-init')
+const exec = require('@moleculeblock/cli-exec')
 const pkg = require('../package.json')
 
 const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } = require('./const');
@@ -38,7 +39,7 @@ function registerCommand() {
   program
     .command('init [projectName]')
     .option('-f, --force', '是否强制初始化项目')
-    .action(init)
+    .action(exec)
 
   // 开启debug模式
   program.on('option:debug', () => {

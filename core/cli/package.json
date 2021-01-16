@@ -31,6 +31,7 @@
         "@moleculeblock/cli-get-npm-info": "file:../../utils/get-npm-info",
         "@moleculeblock/cli-log": "file:../../utils/log",
         "@moleculeblock/cli-init": "file:../../commands/init",
+        "@moleculeblock/cli-exec": "file:../exec",
         "colors": "^1.4.0",
         "commander": "^6.2.1",
         "dotenv": "^8.2.0",
