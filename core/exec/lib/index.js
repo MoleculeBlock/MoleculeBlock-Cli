@@ -21,7 +21,7 @@ async function exec(...args) {
   const [projectName, cmdObj] = args
   const cmdName = cmdObj.name()
   const packageName = SETTINGS[cmdName]
-  const packageVersion = '2.6.5'
+  const packageVersion = 'latest'
 
   if(!targetPath) {
     // package缓存路径
@@ -49,7 +49,6 @@ async function exec(...args) {
       packageVersion
     })
   }
-  console.log(await pkg.exists(), '---')
   const rootFile = pkg.getRootFilePath()
   if(rootFile) {
     require(rootFile)(...args)
