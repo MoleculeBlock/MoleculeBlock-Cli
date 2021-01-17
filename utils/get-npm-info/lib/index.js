@@ -53,5 +53,6 @@ async function getNpmSemanticVersion(baseVersion, npmName, registry) {
 module.exports = {
   getNpmInfo,
   getNpmVersions,
-  getNpmSemanticVersion
+  getNpmSemanticVersion,
+  getDefaultRegistry
 };

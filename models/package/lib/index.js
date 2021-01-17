@@ -1,6 +1,11 @@
 'use strict';
 
+const path = require('path')
+const pkgDir = require('pkg-dir').sync
+const npminstall = require('npminstall')
+const formatPath = require('@moleculeblock/cli-format-path')
 const {isObject} = require('@moleculeblock/cli-utils')
+const {getDefaultRegistry} = require('@moleculeblock/cli-get-npm-info')
 
 class Package {
   constructor(options) {
@@ -10,10 +15,9 @@ class Package {
     if(!isObject(options)) {
       throw new Error('Package类的options参数必须为对象')
     }
-    // package路径
+    // package目标路径
     this.targetPath = options.targetPath
-    // package存储路径
-    this.storePath = options.storePath
+    this.storeDir = options.storeDir
     // package name
     this.packageName = options.packageName
     // package version
@@ -24,13 +28,37 @@ class Package {
   exists() {}
 
   // 安装Package
-  install() {}
+  install() {
+    return npminstall({
+      root: this.targetPath,
+      storeDir: this.storeDir,
+      registry: getDefaultRegistry(),
+      pkgs: [
+        {
+          name: this.packageName,
+          version: this.packageVersion
+        }
+      ]
+    })
+  }
 
   // 更新Package
   update() {}
 
   // 获取入口文件路径
-  getRootFilePath() {}
+  getRootFilePath() {
+    // 获取package.json所在目录
+    const dir = pkgDir(this.targetPath)
+    if(dir) {
+      // 读取package.json
+      const pkgFile = require(path.resolve(dir, 'package.json'))
+      // 获取main路径对应js
+      if(pkgFile && pkgFile.main) {
+        return formatPath(path.resolve(dir, pkgFile.main))
+      }
+    }
+    return null
+  }
 }
 
 module.exports = Package;

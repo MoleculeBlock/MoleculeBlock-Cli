@@ -1,9 +1,9 @@
 {
-  "name": "@moleculeblock/cli-package",
+  "name": "@moleculeblock/cli-format-path",
   "version": "1.0.0",
-  "description": "> TODO: description",
+  "description": "formath path",
   "author": "TaroSunn <sunxiaomingyes@gmail.com>",
-  "homepage": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/tree/master/core/cli-package#readme",
+  "homepage": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/tree/master/core/cli-format-path#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
@@ -22,13 +22,6 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {
-    "@moleculeblock/cli-format-path": "file:../../utils/format-path",
-    "@moleculeblock/cli-utils": "file:../../utils/utils",
-    "@moleculeblock/cli-get-npm-info": "file:../../utils/get-npm-info",
-    "npminstall": "^4.10.0",
-    "pkg-dir": "^5.0.0"
   },
   "bugs": {
     "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"

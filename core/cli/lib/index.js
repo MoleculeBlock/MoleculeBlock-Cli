@@ -25,6 +25,9 @@ async function index() {
     registerCommand()
   } catch (e) {
     log.error(e.message)
+    if(program.debug) {
+      console.log(e)
+    }
   }
 }
 
