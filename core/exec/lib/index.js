@@ -5,7 +5,7 @@ const Package = require('@moleculeblock/cli-package')
 const log = require('@moleculeblock/cli-log')
 
 const SETTINGS = {
-  init: '@moleclueblock/cli-init'
+  init: 'vue'
 }
 
 const CACHE_DIR = 'dependencies'
@@ -21,7 +21,7 @@ async function exec(...args) {
   const [projectName, cmdObj] = args
   const cmdName = cmdObj.name()
   const packageName = SETTINGS[cmdName]
-  const packageVersion = 'latest'
+  const packageVersion = '2.6.5'
 
   if(!targetPath) {
     // package缓存路径
@@ -37,7 +37,7 @@ async function exec(...args) {
     })
     if(await pkg.exists()) {
       // 更新package
-      console.log('更新package')
+      await pkg.update()
     }else {
       // 安装package
       await pkg.install()

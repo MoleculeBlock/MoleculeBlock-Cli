@@ -4,6 +4,7 @@ const path = require('path')
 const pkgDir = require('pkg-dir').sync
 const npminstall = require('npminstall')
 const pathExists = require('path-exists').sync
+const fse = require('fs-extra')
 const formatPath = require('@moleculeblock/cli-format-path')
 const {isObject} = require('@moleculeblock/cli-utils')
 const {getDefaultRegistry, getNpmLatestVersion} = require('@moleculeblock/cli-get-npm-info')
@@ -28,6 +29,9 @@ class Package {
   }
 
   async prepare() {
+    if(this.storeDir && !pathExists(this.storeDir)) {
+      fse.mkdirpSync(this.storeDir)
+    }
     if(this.packageVersion === 'latest') {
       this.packageVersion = await getNpmLatestVersion(this.packageName)
     }
@@ -35,6 +39,10 @@ class Package {
 
   get cacheFilePath() {
     return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`)
+  }
+
+  getSpecificCacheFilePaht(packageVersion,) {
+    return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`)
   }
 
   // 判断当前Package是否存在
@@ -65,7 +73,28 @@ class Package {
   }
 
   // 更新Package
-  update() {}
+  async update() {
+    await this.prepare()
+    // 获取npm包最新版本号
+    const latestPackageVersion = await getNpmLatestVersion(this.packageName)
+    // 查询最新版本号对应的路径是否存在
+    const latesFilePath = this.getSpecificCacheFilePaht(latestPackageVersion)
+    // 如果不存在, 这安装最新版本
+    if(!pathExists(latesFilePath)) {
+      await npminstall({
+        root: this.targetPath,
+        storeDir: this.storeDir,
+        registry: getDefaultRegistry(),
+        pkgs: [
+          {
+            name: this.packageName,
+            version: latestPackageVersion
+          }
+        ]
+      })
+      this.packageVersion = latestPackageVersion
+    }
+  }
 
   // 获取入口文件路径
   getRootFilePath() {
