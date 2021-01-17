@@ -3,9 +3,10 @@
 const path = require('path')
 const pkgDir = require('pkg-dir').sync
 const npminstall = require('npminstall')
+const pathExists = require('path-exists').sync
 const formatPath = require('@moleculeblock/cli-format-path')
 const {isObject} = require('@moleculeblock/cli-utils')
-const {getDefaultRegistry} = require('@moleculeblock/cli-get-npm-info')
+const {getDefaultRegistry, getNpmLatestVersion} = require('@moleculeblock/cli-get-npm-info')
 
 class Package {
   constructor(options) {
@@ -22,13 +23,34 @@ class Package {
     this.packageName = options.packageName
     // package version
     this.packageVersion = options.packageVersion
+    // package缓存目录前缀
+    this.cacheFilePathPrefix = this.packageName.replace('/', '_')
+  }
+
+  async prepare() {
+    if(this.packageVersion === 'latest') {
+      this.packageVersion = await getNpmLatestVersion(this.packageName)
+    }
+  }
+
+  get cacheFilePath() {
+    return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`)
   }
 
   // 判断当前Package是否存在
-  exists() {}
+  async exists() {
+    if(this.storeDir) {
+      await this.prepare()
+      console.log(this.cacheFilePath)
+      return pathExists(this.cacheFilePath)
+    }else {
+      return pathExists(this.targetPath)
+    }
+  }
 
   // 安装Package
-  install() {
+  async install() {
+    await this.prepare()
     return npminstall({
       root: this.targetPath,
       storeDir: this.storeDir,
