@@ -1,9 +1,9 @@
 {
-  "name": "@moleculeblock/cli-init",
-  "version": "1.0.5",
-  "description": "cli init",
+  "name": "@moleculeblock/cli-command",
+  "version": "1.0.0",
+  "description": "command",
   "author": "TaroSunn <sunxiaomingyes@gmail.com>",
-  "homepage": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/tree/master/core/cli-init#readme",
+  "homepage": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/tree/master/core/cli-command#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
@@ -23,11 +23,12 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "dependencies": {
-    "@moleculeblock/cli-command": "file:../../models/command",
-    "@moleculeblock/cli-log": "file:../../utils/log"
-  },
   "bugs": {
     "url": "https://github.com/MoleculeBlock/MoleculeBlock-Cli/issues"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "semver": "^7.3.4",
+    "@moleculeblock/cli-log": "file:../../utils/log"
   }
 }

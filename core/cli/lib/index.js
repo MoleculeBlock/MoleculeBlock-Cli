@@ -13,7 +13,7 @@ const init = require('@moleculeblock/cli-init')
 const exec = require('@moleculeblock/cli-exec')
 const pkg = require('../package.json')
 
-const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } = require('./const');
+const { DEFAULT_CLI_HOME } = require('./const');
 
 let args
 
@@ -77,7 +77,6 @@ function registerCommand() {
 
 async function prepare() {
   checkPkgVersion()
-    checkNodeVersion()
     checkRoot()
     checkUserHome()
     checkEnv()
